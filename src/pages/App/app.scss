@@ -1,0 +1,259 @@
+@import "~bootstrap/scss/bootstrap";
+
+@charset "UTF-8";
+
+html {
+    box-sizing: border-box;
+    font-size: 10px;
+    color: $black;
+    scroll-behavior: smooth;
+}
+
+body {    
+    font-family: 'Roboto', sans-serif;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    box-sizing: border-box;    
+}
+
+ul, li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+h1, h2, h3, h4, p {
+    margin: 0;
+    padding: 0;  
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: 100%;
+}
+
+.calculator__heading {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.calculator__row {
+    margin-bottom: 30px;
+}
+
+.calculator__option {
+    font-size: 17px;
+    font-weight: 700;
+    color: $white;
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+}
+
+.calculator__select {
+    font-weight: 700;
+    font-size: 16px;
+
+    &--text {
+        font-weight: 700;
+    }
+}
+
+.calculator-check__input {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.calculator__label {
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.calculator-item {
+    cursor: pointer;   
+    margin-bottom: 15px;
+}
+
+.calculator-card {
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 3px solid $black;
+    padding: 12px 15px;
+    transition: all .3s;
+
+    &--active {
+        border: 3px solid $primary;
+    }   
+
+    &:hover {
+        border: 3px solid $primary;
+        transform: scale(1.1);
+    }
+}
+
+.calculator-card__img {
+    width: 100%;
+    height: 70px;
+}
+
+.calculator-card__title {
+    //height: 66px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;  
+}
+
+.calculator-card__name { 
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.calculator-card__price {
+    color: $primary;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.calculator-total {
+    margin: 66px 0;
+    border: 2px solid $black;
+    width: 400px;
+    padding: 7px 20px;
+    align-self: flex-start;
+}
+
+.calculator-total__row {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+
+    &--row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.calculator-total__box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.calculator-total__button {
+    border: 1px solid $black;
+    font-size: 20px;
+    padding: 0 7px;
+}
+
+.calculator-total__list {
+    margin-bottom: 30px;
+
+    &--bordered {
+        border-bottom: 3px solid $black;
+        margin-bottom: 0;
+    }
+}
+
+.calculator-total__heading {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.calculator-total__title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.calculator-total__subtitle {
+    font-size: 16px;
+    font-weight: 500;
+    padding-left:30px;
+}
+
+.calculator-total__square {
+    font-size: 16px;
+    font-weight: 500;
+    padding-left: 60px;
+}
+
+.calculator-total__price {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.calculator-total__subheading {
+    margin-bottom: 25px;
+}
+
+.calculator-total__btn {
+    padding: 10px 0;
+    width: 100%;
+    font-size: 20px;
+    color: $white;
+    background-color: $primary;
+    margin-bottom: 10px;
+}
+
+.calculator-stages {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 400px;
+    height: 350px;
+    position: relative;
+}
+
+.calculator-stages__block {
+    position: relative;
+    max-width: 65px;
+    height: 65px;
+    border: 3px solid $primary;
+    border-radius: 50%;
+
+    &::after {
+        position: absolute;
+        content: "";
+        width: 3px;
+        top: 100%;
+        left: 50%;
+        height: 40px;
+        background-color: $primary;
+    }
+
+    &--20 {       
+        &::after { height: 24px; } 
+    }
+
+    &--0 {       
+        &::after { height: 0; } 
+    }
+}
+
+.calculator-stages__number {
+    position: absolute;
+    font-size: 35px;
+    color: $primary;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.calculator-stages__text {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.select__hidden {
+    display: none;
+}

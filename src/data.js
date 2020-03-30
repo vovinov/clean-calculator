@@ -1,0 +1,176 @@
+export const data =  {
+    services: [
+        'Уборка квартиры', 
+        'Уборка квартиры после ремонта',
+        'Уборка коттеджа', 
+        'Уборка коттеджа после ремонта',
+        'Уборка офиса'],
+    typeRoom: ['Экспресс уборка', 'Генеральная уборка', 'VIP уборка'],
+    typeFurniture: ['С мебелью', 'Без мебели'],
+    typeCottage: ['Экспресс уборка', 'Генеральная уборка', 'VIP уборка'],
+    typeCottageRepair: ['Деревянный дом', 'Коттедж'],
+    typeOffice: ['Генеральная уборка', 'Уборка после ремонта без мебели', 'Уборка после ремонта c мебелью'],
+    squareRoom: ['до 50 м²', 'до 70 м²', 'до 90 м²', 'до 120 м²'],
+    squareFurniture: ['до 40 м²', 'до 50 м²', 'до 60 м²', 'до 70 м²', 'до 80 м²', 'до 90 м²', 'до 100 м²'],
+    squareCottage: ['до 100 м²', 'до 150 м²', 'до 200 м²', 'до 250 м²', 'до 300 м²', 'до 350 м²'],
+}
+
+
+export const cards = [
+    {
+        id: 1,
+        url: '/img/calculator_glasses.png',
+        alt: 'Glasses',
+        title: 'Помыть посуду',
+        price: '250 руб / 60 мин',
+        buttons: true,
+        value: 250,
+        duration: 60,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 2,
+        url: '/img/calculator_multi.png',
+        alt: 'Multi',
+        title: 'Помыть СВЧ печь',
+        price: '250 руб',
+        buttons: false,
+        value: 250,
+        duration: null,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 3,
+        url: '/img/calculator_friges.jpg',
+        alt: 'Heat',
+        title: 'Помыть духовку',
+        price: '450 руб',
+        buttons: false,
+        value: 450,
+        duration: null,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 4,
+        url: '/img/calculator_friges2.jpg',
+        alt: 'Glasses',
+        title: 'Помыть холодильник',
+        price: '450 руб',
+        buttons: false,
+        value: 450,
+        duration: null,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 5,
+        url: '/img/calculator_kitchen-shelves.jpg',
+        alt: 'Kitchen',
+        title: 'Помыть кухонныe шкафы',
+        price: '500 руб',
+        buttons: false,
+        value: 500,
+        duration: null,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 6,
+        url: '/img/calculator_windows.jpg',
+        alt: 'Windows',
+        title: 'Мойка окон',
+        price: 'от 190 руб',
+        buttons: false,
+        value: 190,
+        duration: null,
+        square: null,
+        quantity: null
+    },{
+        id: 7,
+        url: '/img/calculator_lamp.jpg',
+        alt: 'Lamp',
+        title: 'Помыть люстру',
+        price: '350 руб/шт',
+        buttons: true,
+        value: 350,
+        duration: null,
+        square: null,
+        quantity: 1
+    },
+    {
+        id: 8,
+        url: '/img/calculator_balcon.jpg',
+        alt: 'Glasses',
+        title: 'Помыть балкон',
+        price: '300 руб',
+        buttons: false,
+        value: 300,
+        duration: null,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 9,
+        url: '/img/calculator_ironing.jpg',
+        alt: 'Ironing',
+        title: 'Глажка белья',
+        price: '500 руб/60 ',
+        buttons: true,
+        value: 500,
+        duration: 60,
+        square: null,
+        quantity: null
+    },
+    {
+        id: 10,
+        url: '/img/calculator_vacuum.jpg',
+        alt: 'Vacuum',
+        title: 'Химчистка ковров',
+        price: 'от 70 руб/м²',
+        buttons: true,
+        value: 70,
+        square: 1,
+        duration: null,
+        quantity: null
+    },
+    {
+        id: 11,
+        url: '/img/calculator_tul.jpg',
+        alt: 'Tul',
+        title: 'Химчистка штор',
+        price: 'от 250 руб/м²',
+        buttons: true,
+        value: 250,
+        square: 1,
+        duration: null,
+        quantity: null
+    },
+    {
+        id: 12,
+        url: './img/calculator_textil.jpg',
+        alt: 'Textil',
+        title: 'Химчистка тестильной мебели',
+        price: 'от 250 руб/шт',
+        buttons: true,
+        value: 250,
+        quantity: 1,
+        duration: null,
+        square: null,
+    },
+    {
+        id: 13,
+        url: './img/calculator_leather.jpg',
+        alt: 'Leather',
+        title: 'Химчистка кожаной мебели',
+        price: 'от 450 руб/шт',
+        buttons: true,
+        value: 450,
+        square: null,
+        quantity: 1,
+        duration: null
+    }
+
+]
