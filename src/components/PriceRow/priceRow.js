@@ -6,22 +6,18 @@ export default class PriceRow extends Component {
         price: this.props.item.value,
         value: this.props.item.value,
         duration: this.props.item.duration,
-        total: 0
+        square: this.props.item.square,
+        quantity: this.props.item.quantity
     }
 
-    // componentDidMount() {
-    //     this.props.getBonusPrice(this.state.value, this.props.item.title);
-    // }
+    componentDidUpdate(prevProps, prevState) {
+        const {value} = this.state;
+        if (value !== prevState.value) {
+            this.props.updateBonusPrice(this.props.item, value);
+        }
+    }
 
-    // componentDidUpdate(prevProps, prevState) {
-
-    //     const {value} = this.state;
-    //     if (value !== prevState.value) {
-    //         this.props.getBonusPrice(value, this.props.item.title);
-    //     }
-    // }
-
-    incValueToBonus = () => {
+    incValueToBonusDishes = () => {
         this.setState((state) => {
             return {
                 value: state.value + 250,
@@ -30,7 +26,7 @@ export default class PriceRow extends Component {
         })
     }  
     
-    decValueToBonus = () => {
+    decValueToBonusDishes = () => {
         this.setState((state) => {
             if (state.value === 250) {
                 return {
@@ -44,6 +40,37 @@ export default class PriceRow extends Component {
             }
         })
     } 
+
+    changeButtons = (title) => {
+        switch(title) {
+            case 'Помыть посуду':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.incValueToBonusDishes()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusDishes()}
+                        >-</button>
+                    </div> 
+                )
+            case 'Помыть люстру':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.incValueToBonusLamp()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusLamp()}
+                        >-</button>
+                    </div>
+                )
+        }
+    }
 
     render() {       
 
@@ -66,18 +93,7 @@ export default class PriceRow extends Component {
                     <span className="calculator-total__title">{item.title}</span> 
                     <span className="calculator-total__price">{price}</span>
                 </div>
-                {item.buttons && 
-                    <div className="calculator-total__buttons mb-3 text-right">
-                        <button 
-                            className="btn calculator-total__button"
-                            onClick={() => this.incValueToBonus()}>+
-                        </button>
-                        <button 
-                            className="btn calculator-total__button"
-                            onClick={() => this.decValueToBonus()}
-                        >-</button>
-                    </div>                                                
-                }                                                
+                {item.buttons && this.changeButtons(item.title)}                                                               
             </li>
         )
     }

@@ -16,13 +16,13 @@ export default class App extends Component {
     state = {
         data: data,
         cards: cards,
-        selectRoom: '', 
         selectRoomValue: 'Уборка квартиры',
         selectTypeValue: 'Экспресс уборка',
         selectSquareValue: 'до 50 м²',
         subPrice: 2500,
         totalPrice: 0,        
-        bonus: []
+        bonus: [],
+        bonusDishes: 0
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -44,15 +44,9 @@ export default class App extends Component {
             this.getTotalPrice();
         }
 
-        if (prevState.bonus.length !== bonus.length) {    
+        if (prevState.bonus.length !== bonus.length) {  
             this.getTotalPrice(); 
         }
-
-        if ((R.compose(R.sum(), R.map((item) => R.prop('value', item)))(prevState.bonus))
-            !==
-            (R.compose(R.sum(), R.map((item) => R.prop('value', item)))(this.state.bonus))) {
-                this.getTotalPrice(); 
-            }
     }
 
     onSelectRoom = (e) => {
@@ -381,19 +375,30 @@ export default class App extends Component {
         }
     }
 
-    addToBonus = (card) => {
-
-        let cards = this.state.bonus.slice();
+    addBonusPrice = (card, value) => {
+        const {bonus} = this.state
         
+        let cards = bonus.slice();          
         if (!R.contains(card, cards)) {
             cards.push(card); 
-        } else {       
-            cards.splice(R.findIndex(R.propEq('id', card.id))(cards), 1)
+        } else {      
+            cards.splice(R.findIndex(R.propEq('id', card.id), cards), 1)
+            // const newCard = card;
+            // newCard.value = value;
+            // cards.push(newCard); 
         }
-        console.log(cards)
         this.setState({
             bonus: cards
         })
+        this.getTotalPrice();
+    }
+
+    updateBonusPrice = (card, value) => {
+        const filter = R.find(R.propEq('title', card.title))(this.state.bonus)
+        filter.value = value
+        console.log(filter)
+
+        this.getTotalPrice();
     }
 
     getTotalPrice = () => {
@@ -428,8 +433,7 @@ export default class App extends Component {
                                     return <Card 
                                                 card={card} 
                                                 key={card.id} 
-                                                onCardClick={() => this.addToBonus(card)} 
-                                                bonus={bonus.map((item) => R.prop('id', item))} />
+                                                onCardClick={() => this.addBonusPrice(card)} />
                                 })}
                             </ul>  
                         </form>
@@ -450,7 +454,7 @@ export default class App extends Component {
                                 <ul className="calculator-total__list calculator-total__list--bordered">
                                     {bonus && bonus.map((item, idx) => {                            
                                         return (
-                                            <PriceRow key={idx} item={item} />
+                                            <PriceRow key={idx} item={item} updateBonusPrice={this.updateBonusPrice} />
                                         )
                                     })}
                                 </ul>

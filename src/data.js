@@ -117,7 +117,7 @@ export const cards = [
         url: '/img/calculator_ironing.jpg',
         alt: 'Ironing',
         title: 'Глажка белья',
-        price: '500 руб/60 ',
+        price: '500 руб / 60 мин',
         buttons: true,
         value: 500,
         duration: 60,
