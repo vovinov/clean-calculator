@@ -4,7 +4,8 @@ import * as R from 'ramda';
 
 import CalculatorRow from '../../components/CalculatorRow';
 import Card from '../../components/Card';
-import PriceRow from '../../components/PriceRow'
+import PriceRow from '../../components/PriceRow';
+import Modal from '../../components/Modal'
 
 import './app.scss';
 
@@ -21,7 +22,8 @@ export default class App extends Component {
         selectSquareValue: '',
         subPrice: null,
         totalPrice: null,        
-        bonus: []
+        bonus: [],
+        modal: false
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -412,62 +414,74 @@ export default class App extends Component {
             totalPrice: totalPrice 
         })
     }
+
+    changeMode = () => {
+        this.setState((state) => {
+            return {
+                modal: !state.modal
+            }
+        })
+    }
     
     render() {       
 
-        const {subPrice, selectRoomValue, selectTypeValue, selectSquareValue, totalPrice, bonus} = this.state;        
+        const {subPrice, selectRoomValue, selectTypeValue, selectSquareValue, totalPrice, bonus, modal} = this.state;        
         const {services} = this.state.data;
 
         return (
             <section>
                 <div className="container my-5">
-                    <div className="row">
-                        <form className="col-md-6">
-                            <h2 className="calculator__heading">КАЛЬКУЛЯТОР</h2>
-                            <CalculatorRow 
-                                title='Выберите услугу'
-                                options={services} 
-                                onSelected={this.onSelectRoom} />                            
-                            {this.renderSwitch(selectRoomValue)}                            
-                            <h2 className="calculator__heading">ДОПОЛНИТЕЛЬНО</h2> 
-                            <ul className="calculator__list row">
-                                {cards &&
-                                cards.map((card) => {
-                                    return <Card 
-                                                card={card} 
-                                                key={card.id} 
-                                                onCardClick={() => this.addBonusPrice(card)} />
-                                })}
-                            </ul>  
-                        </form>
-                        <div className="col-md-6 d-flex justify-content-center flex-wrap align-content-start">
-                            <div className="calculator-total">
-                                <h3 className="mb-3 calculator__heading text-center">ИТОГ</h3>
-                                <ul className="mb-5">
-                                    <li className="calculator-total__row calculator-total__row--row">
-                                        <div>
-                                            <p className="calculator-total__heading">{selectRoomValue}</p>
-                                            <p className="calculator-total__subtitle">{selectTypeValue}</p> 
-                                            <p className="calculator-total__square">{selectSquareValue}</p> 
-                                        </div>
-                                        <span className="calculator-total__price">{subPrice && `${subPrice} руб`}</span> 
-                                    </li>
-                                </ul>
-                                <h3 className="calculator-total__subheading">Дополнительные услуги</h3>
-                                <ul className="calculator-total__list calculator-total__list--bordered">
-                                    {bonus && bonus.map((item, idx) => {                            
-                                        return (
-                                            <PriceRow key={idx} item={item} updateBonusPrice={this.updateBonusPrice} />
-                                        )
+                    <form className="row">
+                        {
+                            modal === true ? <Modal  />
+                            :
+                            <div className="col-md-6">
+                                <h2 className="calculator__heading">КАЛЬКУЛЯТОР</h2>
+                                <CalculatorRow 
+                                    title='Выберите услугу'
+                                    options={services} 
+                                    onSelected={this.onSelectRoom} />                            
+                                {this.renderSwitch(selectRoomValue)}                            
+                                <h2 className="calculator__heading">ДОПОЛНИТЕЛЬНО</h2> 
+                                <ul className="calculator__list row">
+                                    {cards &&
+                                    cards.map((card) => {
+                                        return <Card 
+                                                    card={card} 
+                                                    key={card.id} 
+                                                    onCardClick={() => this.addBonusPrice(card)} />
                                     })}
-                                </ul>
-                                <div className="calculator-total__row calculator-total__row--row my-5">
-                                    <h3 className="mb-3">ВСЕГО</h3>
-                                    <span className="calculator-total__price"> {totalPrice && `${totalPrice} руб`}</span>
-                                </div>
-                                <button type="submit" className="btn calculator-total__btn">ОФОРМИТЬ ЗАКАЗ</button>
+                                </ul>  
                             </div>
-                            <ul className="calculator-stages">
+                        }                       
+                        <div className="col-md-6 d-flex justify-content-center flex-wrap align-content-start">
+                                <div className="calculator-total">
+                                    <h3 className="mb-3 calculator__heading text-center">ИТОГ</h3>
+                                    <ul className="mb-5">
+                                        <li className="calculator-total__row calculator-total__row--row">
+                                            <div>
+                                                <p className="calculator-total__heading">{selectRoomValue}</p>
+                                                <p className="calculator-total__subtitle">{selectTypeValue}</p> 
+                                                <p className="calculator-total__square">{selectSquareValue}</p> 
+                                            </div>
+                                            <span className="calculator-total__price">{subPrice && `${subPrice} руб`}</span> 
+                                        </li>
+                                    </ul>
+                                    <h3 className="calculator-total__subheading">Дополнительные услуги</h3>
+                                    <ul className="calculator-total__list calculator-total__list--bordered">
+                                        {bonus && bonus.map((item, idx) => {                            
+                                            return (
+                                                <PriceRow key={idx} item={item} updateBonusPrice={this.updateBonusPrice} />
+                                            )
+                                        })}
+                                    </ul>
+                                    <div className="calculator-total__row calculator-total__row--row my-5">
+                                        <h3 className="mb-3">ВСЕГО</h3>
+                                        <span className="calculator-total__price"> {totalPrice && `${totalPrice} руб`}</span>
+                                    </div>
+                                    <button type="button" className="btn calculator-total__btn" onClick={this.changeMode}>{this.state.modal ? 'НАЗАД' : 'ПЕРЕЙТИ К ЗАКАЗУ'}</button>
+                                </div>
+                                <ul className="calculator-stages">
                                 <li className="row justify-content-between align-items-center">
                                     <div className="col-3 justify-self-center">
                                         <div className="calculator-stages__block">
@@ -501,8 +515,8 @@ export default class App extends Component {
                                     <p className="col-9 calculator-stages__text">Приёмка работ и оплата</p>
                                 </li>
                             </ul>
-                        </div> 
-                    </div>
+                            </div> 
+                    </form>
                 </div> 
             </section>
         )

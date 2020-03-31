@@ -1,0 +1,100 @@
+
+$black: #000;
+$white: #fff;
+$grey: #A9A9A9;
+$primary: #1098F7;
+
+.section__btn {
+    background-color: $white;
+    color: $primary;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 10px;
+    transition: all .3s;
+    border: 3px solid $primary;
+    box-shadow: 5px 5px 15px rgba($primary, 0.3);
+
+    &:hover {
+        color: $white;
+        background-color: $primary;
+    }
+}
+
+.modal__form {
+    padding: 20px;
+}
+
+.modal__row {
+    align-items: center;
+    margin-bottom: 34px;
+}
+
+.modal__link {
+    font-size: 20px;
+}
+
+.modal__heading {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    flex-grow: 1;
+    
+}
+
+.form-control {
+    font-size: 20px;
+}
+
+.form-control__modal {
+    font-size: 20px;
+    margin-bottom: 11px;
+}
+
+.form__box {
+    width: 400px;
+}
+
+.form__button {
+    padding: 5px 15px;
+    color: $primary;
+    border: 1px solid $primary;
+    background-color: $white;
+
+    &:hover {
+        background-color: $primary;
+        border: 1px solid $primary;
+        color: $white;
+        transform: scale(1.1);
+    }
+}
+
+.form__label {
+    font-size: 15px;
+    font-weight: 500;
+    padding-right: 20px;
+}
+
+.form__time {
+    padding: 5px;
+}
+
+@media (max-width: 768px) {
+
+    .footer {
+        padding: 10px 0;
+    }
+
+    .footer__text {    
+        &--last {
+            margin-bottom: 25px;
+        }
+    }
+
+    .footer__contacts {
+        text-align: center;
+    }
+}
+
+
