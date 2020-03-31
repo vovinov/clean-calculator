@@ -16,18 +16,18 @@ export default class App extends Component {
     state = {
         data: data,
         cards: cards,
-        selectRoomValue: 'Уборка квартиры',
-        selectTypeValue: 'Экспресс уборка',
-        selectSquareValue: 'до 50 м²',
-        subPrice: 2500,
-        totalPrice: 0,        
-        bonus: [],
-        bonusDishes: 0
+        selectRoomValue: '',
+        selectTypeValue: '',
+        selectSquareValue: '',
+        subPrice: null,
+        totalPrice: null,        
+        bonus: []
     }
 
     componentDidUpdate(prevProps, prevState) {
 
-        const {selectRoomValue, selectTypeValue, selectSquareValue, bonus} = this.state;
+        const {selectRoomValue, selectTypeValue, selectSquareValue, bonus, subPrice} = this.state;
+        
 
         if (selectRoomValue !== prevState.selectRoomValue) {            
             this.getSubPrice();
@@ -42,9 +42,14 @@ export default class App extends Component {
         if (selectSquareValue !== prevState.selectSquareValue) {
             this.getSubPrice();
             this.getTotalPrice();
+            
         }
 
         if (prevState.bonus.length !== bonus.length) {  
+            this.getTotalPrice(); 
+        }
+
+        if (prevState.subPrice !== subPrice) {
             this.getTotalPrice(); 
         }
     }
@@ -56,12 +61,14 @@ export default class App extends Component {
             selectSquareValue: '',
             subPrice: ''
         })
+
     }
 
     onSelectType = (e) => {
         this.setState({
             selectTypeValue: e.target.value
         })
+
     }
 
     onSelectSquare = (e) => {
@@ -94,11 +101,13 @@ export default class App extends Component {
                         title='Выберите обстановку' 
                         options={typeFurniture} 
                         onSelected={this.onSelectType}
+                        initialValue=''
                         />
                     <CalculatorRow 
                         title='Площадь помещения' 
                         options={squareFurniture} 
                         onSelected={this.onSelectSquare}
+                        initialValue=''
                         />
                 </>)
             case 'Уборка коттеджа':
@@ -161,7 +170,7 @@ export default class App extends Component {
                     case 'до 90 м²': this.setState({subPrice: 3500})
                         break;
                     case 'до 120 м²': this.setState({subPrice: 4000})
-                     break;
+                        break;
                     default: this.setState({subPrice: 0})
                 }
             }
@@ -383,9 +392,6 @@ export default class App extends Component {
             cards.push(card); 
         } else {      
             cards.splice(R.findIndex(R.propEq('id', card.id), cards), 1)
-            // const newCard = card;
-            // newCard.value = value;
-            // cards.push(newCard); 
         }
         this.setState({
             bonus: cards
@@ -396,8 +402,6 @@ export default class App extends Component {
     updateBonusPrice = (card, value) => {
         const filter = R.find(R.propEq('title', card.title))(this.state.bonus)
         filter.value = value
-        console.log(filter)
-
         this.getTotalPrice();
     }
 
@@ -423,8 +427,7 @@ export default class App extends Component {
                             <CalculatorRow 
                                 title='Выберите услугу'
                                 options={services} 
-                                onSelected={this.onSelectRoom} 
-                                check='true' />                            
+                                onSelected={this.onSelectRoom} />                            
                             {this.renderSwitch(selectRoomValue)}                            
                             <h2 className="calculator__heading">ДОПОЛНИТЕЛЬНО</h2> 
                             <ul className="calculator__list row">
@@ -447,7 +450,7 @@ export default class App extends Component {
                                             <p className="calculator-total__subtitle">{selectTypeValue}</p> 
                                             <p className="calculator-total__square">{selectSquareValue}</p> 
                                         </div>
-                                        <span className="calculator-total__price">{subPrice}</span> 
+                                        <span className="calculator-total__price">{subPrice && `${subPrice} руб`}</span> 
                                     </li>
                                 </ul>
                                 <h3 className="calculator-total__subheading">Дополнительные услуги</h3>
@@ -460,7 +463,7 @@ export default class App extends Component {
                                 </ul>
                                 <div className="calculator-total__row calculator-total__row--row my-5">
                                     <h3 className="mb-3">ВСЕГО</h3>
-                                    <span className="calculator-total__price">{totalPrice}</span>
+                                    <span className="calculator-total__price"> {totalPrice && `${totalPrice} руб`}</span>
                                 </div>
                                 <button type="submit" className="btn calculator-total__btn">ОФОРМИТЬ ЗАКАЗ</button>
                             </div>
@@ -475,7 +478,7 @@ export default class App extends Component {
                                 </li>
                                 <li className="row justify-content-between align-items-center">
                                     <div className="col-3 align-self-center">
-                                        <div className="calculator-stages__block">
+                                        <div className="calculator-stages__block calculator-stages__block--2">
                                             <span className="calculator-stages__number">2</span>
                                         </div>                            
                                     </div>                            
@@ -483,7 +486,7 @@ export default class App extends Component {
                                 </li>
                                 <li className="row justify-content-between align-items-center">
                                     <div className="col-3 align-self-center">
-                                        <div className="calculator-stages__block calculator-stages__block--20">
+                                        <div className="calculator-stages__block calculator-stages__block--3">
                                             <span className="calculator-stages__number">3</span>
                                         </div>                            
                                     </div>                            

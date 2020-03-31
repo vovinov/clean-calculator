@@ -41,13 +41,157 @@ export default class PriceRow extends Component {
         })
     } 
 
+    incValueToBonusLamp = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 350,
+                quantity: state.quantity + 1
+            }
+        })
+    }  
+    
+    decValueToBonusLamp = () => {
+        this.setState((state) => {
+            if (state.value === 0) {
+                return {
+                    value: state.value,
+                    quantity: state.quantity
+                }
+            } 
+            return {
+                value: state.value - 350,
+                quantity: state.quantity - 1
+            }
+        })
+    } 
+
+    incValueToBonusIroning = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 500,
+                duration: state.duration + 60
+            }
+        })
+    }  
+    
+    decValueToBonusIroning = () => {
+        this.setState((state) => {
+            if (state.value === 500) {
+                return {
+                    value: state.value,
+                    duration: state.duration
+                }
+            } 
+            return {
+                value: state.value - 500,
+                duration: state.duration - 60
+            }
+        })
+    }
+
+    incValueToBonusDryCarpet = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 70,
+                square: state.square + 1
+            }
+        })
+    }  
+    
+    decValueToBonusDryCarpet = () => {
+        this.setState((state) => {
+            if (state.value === 70) {
+                return {
+                    value: state.value,
+                    square: state.square
+                }
+            } 
+            return {
+                value: state.value - 70,
+                square: state.square - 1
+            }
+        })
+    }
+
+    incValueToBonusDryСurtains = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 250,
+                square: state.square + 1
+            }
+        })
+    }  
+    
+    decValueToBonusDryСurtains = () => {
+        this.setState((state) => {
+            if (state.value === 250) {
+                return {
+                    value: state.value,
+                    square: state.square
+                }
+            } 
+            return {
+                value: state.value - 250,
+                square: state.square - 1
+            }
+        })
+    }
+
+    incValueToBonusDryTextil = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 250,
+                quantity: state.quantity + 1
+            }
+        })
+    }  
+    
+    decValueToBonusDryTextil = () => {
+        this.setState((state) => {
+            if (state.value === 250) {
+                return {
+                    value: state.value,
+                    quantity: state.quantity
+                }
+            } 
+            return {
+                value: state.value - 250,
+                quantity: state.quantity - 1
+            }
+        })
+    }
+
+    incValueToBonusDryLeather = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 450,
+                quantity: state.quantity + 1
+            }
+        })
+    }  
+    
+    decValueToBonusDryLeather = () => {
+        this.setState((state) => {
+            if (state.value === 450) {
+                return {
+                    value: state.value,
+                    quantity: state.quantity
+                }
+            } 
+            return {
+                value: state.value - 450,
+                quantity: state.quantity - 1
+            }
+        })
+    }
+
     changeButtons = (title) => {
         switch(title) {
             case 'Помыть посуду':
                 return (
                     <div className="calculator-total__buttons mb-3 text-right">
                         <button 
-                            className="btn calculator-total__button"
+                            className="btn calculator-total__button calculator-total__button--right"
                             onClick={() => this.incValueToBonusDishes()}>+
                         </button>
                         <button 
@@ -60,7 +204,7 @@ export default class PriceRow extends Component {
                 return (
                     <div className="calculator-total__buttons mb-3 text-right">
                         <button 
-                            className="btn calculator-total__button"
+                            className="btn calculator-total__button calculator-total__buttons--right"
                             onClick={() => this.incValueToBonusLamp()}>+
                         </button>
                         <button 
@@ -69,6 +213,73 @@ export default class PriceRow extends Component {
                         >-</button>
                     </div>
                 )
+            case 'Глажка белья':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button calculator-total__button--right"
+                            onClick={() => this.incValueToBonusIroning()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusIroning()}
+                        >-</button>
+                    </div>
+                )
+            case 'Химчистка ковров':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button calculator-total__button--right"
+                            onClick={() => this.incValueToBonusDryCarpet()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusDryCarpet()}
+                        >-</button>
+                    </div>
+                )
+            case 'Химчистка штор':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button calculator-total__button--right"
+                            onClick={() => this.incValueToBonusDryСurtains()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusDryСurtains()}
+                        >-</button>
+                    </div>
+                )
+            case 'Химчистка текстильной мебели':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button calculator-total__button--right"
+                            onClick={() => this.incValueToBonusDryTextil()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusDryTextil()}
+                        >-</button>
+                    </div>
+                )
+            case 'Химчистка кожаной мебели':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button calculator-total__button--right"
+                            onClick={() => this.incValueToBonusDryLeather()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusDryLeather()}
+                        >-</button>
+                    </div>
+                )
+            default: 
+                return 
         }
     }
 
@@ -78,13 +289,13 @@ export default class PriceRow extends Component {
 
         let price;
         if (!item.duration && !item.square && !item.quantity) {
-            price = `${item.value}`
+            price = `${item.value} руб`
         } else if (item.duration && !item.square && !item.quantity) {
             price = `${this.state.value} руб / ${this.state.duration} мин`
         } else if (!item.duration && item.square && !item.quantity) {
-            price = `${this.state.value} руб / ${item.square} м²`
+            price = `${this.state.value} руб / ${this.state.square} м²`
         } else if (!item.duration && !item.square && item.quantity) {
-            price = `${this.state.value} руб / ${item.quantity} шт`
+            price = `${this.state.value} руб / ${this.state.quantity} шт`
         }           
 
         return (
