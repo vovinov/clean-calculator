@@ -1,6 +1,27 @@
 @import "~bootstrap/scss/bootstrap";
 
-@charset "UTF-8";
+$black: #000;
+$white: #fff;
+$grey: #A9A9A9;
+$primary: #1098F7;
+
+.section__btn {
+    background-color: $white;
+    color: $primary;
+    font-size: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    border-radius: 10px;
+    transition: all .3s;
+    border: 3px solid $primary;
+    box-shadow: 5px 5px 15px rgba($primary, 0.3);
+
+    &:hover {
+        color: $white;
+        background-color: $primary;
+    }
+}
 
 html {
     box-sizing: border-box;
@@ -38,9 +59,7 @@ h1, h2, h3, h4, p {
     margin-bottom: 22px;
 }
 
-.calculator__row {
-    margin-bottom: 30px;
-}
+.calculator__row { margin-bottom: 30px; }
 
 .calculator__option {
     font-size: 17px;
@@ -55,9 +74,7 @@ h1, h2, h3, h4, p {
     font-weight: 700;
     font-size: 16px;
 
-    &--text {
-        font-weight: 700;
-    }
+    &--text { font-weight: 700; }
 }
 
 .calculator-check__input {
@@ -87,9 +104,7 @@ h1, h2, h3, h4, p {
     box-shadow: 5px 5px 15px rgba($black, 0.3);
     transition: all .3s;
 
-    &--active {
-        border: 3px solid $primary;
-    }   
+    &--active { border: 3px solid $primary; }   
 
     &:hover {
         border: 3px solid $primary;
@@ -103,7 +118,6 @@ h1, h2, h3, h4, p {
 }
 
 .calculator-card__title {
-    //height: 66px;
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
@@ -124,7 +138,7 @@ h1, h2, h3, h4, p {
 
 .calculator-total {
     margin: 66px 0;
-    border: 2px solid $black;
+    border: 2px dashed $black;
     width: 400px;
     padding: 7px 20px;
     align-self: flex-start;
@@ -198,16 +212,10 @@ h1, h2, h3, h4, p {
     font-weight: 500;
 }
 
-.calculator-total__subheading {
-    margin-bottom: 25px;
-}
+.calculator-total__subheading { margin-bottom: 25px; }
 
 .calculator-total__btn {
-    padding: 10px 0;
     width: 100%;
-    font-size: 20px;
-    color: $white;
-    background-color: $primary;
     margin-bottom: 10px;
 }
 
@@ -262,8 +270,4 @@ h1, h2, h3, h4, p {
 .calculator-stages__text {
     font-size: 16px;
     font-weight: 500;
-}
-
-.select__hidden {
-    display: none;
 }

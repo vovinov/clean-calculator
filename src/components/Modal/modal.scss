@@ -39,17 +39,27 @@ $primary: #1098F7;
     text-align: center;
     font-size: 30px;
     font-weight: 700;
-    flex-grow: 1;
-    
+    flex-grow: 1; 
 }
 
-.form-control {
-    font-size: 20px;
+.modal-form__box {
+    width: 100%;
 }
 
 .form-control__modal {
-    font-size: 20px;
     margin-bottom: 11px;
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: $black;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 2px solid $primary;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .form__box {
@@ -71,13 +81,18 @@ $primary: #1098F7;
 }
 
 .form__label {
-    font-size: 15px;
+    padding-top: calc(0.375rem + 1px);
+    padding-bottom: calc(0.375rem + 1px);
+    margin-bottom: 0;
+    line-height: 1.5;
+
+    font-size: 20px;
     font-weight: 500;
     padding-right: 20px;
 }
 
 .form__time {
-    padding: 5px;
+    padding: 10px;
 }
 
 @media (max-width: 768px) {

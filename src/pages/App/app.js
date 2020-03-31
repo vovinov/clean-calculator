@@ -431,7 +431,7 @@ export default class App extends Component {
         return (
             <section>
                 <div className="container my-5">
-                    <form className="row">
+                    <div className="row">
                         {
                             modal === true ? <Modal  />
                             :
@@ -455,68 +455,68 @@ export default class App extends Component {
                             </div>
                         }                       
                         <div className="col-md-6 d-flex justify-content-center flex-wrap align-content-start">
-                                <div className="calculator-total">
-                                    <h3 className="mb-3 calculator__heading text-center">ИТОГ</h3>
-                                    <ul className="mb-5">
-                                        <li className="calculator-total__row calculator-total__row--row">
-                                            <div>
-                                                <p className="calculator-total__heading">{selectRoomValue}</p>
-                                                <p className="calculator-total__subtitle">{selectTypeValue}</p> 
-                                                <p className="calculator-total__square">{selectSquareValue}</p> 
-                                            </div>
-                                            <span className="calculator-total__price">{subPrice && `${subPrice} руб`}</span> 
-                                        </li>
-                                    </ul>
-                                    <h3 className="calculator-total__subheading">Дополнительные услуги</h3>
-                                    <ul className="calculator-total__list calculator-total__list--bordered">
-                                        {bonus && bonus.map((item, idx) => {                            
-                                            return (
-                                                <PriceRow key={idx} item={item} updateBonusPrice={this.updateBonusPrice} />
-                                            )
-                                        })}
-                                    </ul>
-                                    <div className="calculator-total__row calculator-total__row--row my-5">
-                                        <h3 className="mb-3">ВСЕГО</h3>
-                                        <span className="calculator-total__price"> {totalPrice && `${totalPrice} руб`}</span>
-                                    </div>
-                                    <button type="button" className="btn calculator-total__btn" onClick={this.changeMode}>{this.state.modal ? 'НАЗАД' : 'ПЕРЕЙТИ К ЗАКАЗУ'}</button>
+                            <div className="calculator-total">
+                                <h3 className="mb-3 calculator__heading text-center">ИТОГ</h3>
+                                <ul className="mb-5">
+                                    <li className="calculator-total__row calculator-total__row--row">
+                                        <div>
+                                            <p className="calculator-total__heading">{selectRoomValue}</p>
+                                            <p className="calculator-total__subtitle">{selectTypeValue}</p> 
+                                            <p className="calculator-total__square">{selectSquareValue}</p> 
+                                        </div>
+                                        <span className="calculator-total__price">{subPrice && `${subPrice} руб`}</span> 
+                                    </li>
+                                </ul>
+                                <h3 className="calculator-total__subheading">Дополнительные услуги</h3>
+                                <ul className="calculator-total__list calculator-total__list--bordered">
+                                    {bonus && bonus.map((item, idx) => {                            
+                                        return (
+                                            <PriceRow key={idx} item={item} updateBonusPrice={this.updateBonusPrice} />
+                                        )
+                                    })}
+                                </ul>
+                                <div className="calculator-total__row calculator-total__row--row my-5">
+                                    <h3 className="mb-3">ВСЕГО</h3>
+                                    <span className="calculator-total__price"> {totalPrice && `${totalPrice} руб`}</span>
                                 </div>
-                                <ul className="calculator-stages">
-                                <li className="row justify-content-between align-items-center">
-                                    <div className="col-3 justify-self-center">
-                                        <div className="calculator-stages__block">
-                                            <span className="calculator-stages__number">1</span>
-                                        </div>                            
+                                <button type="button" className="section__btn calculator-total__btn" onClick={this.changeMode}>{this.state.modal ? 'НАЗАД' : 'ПЕРЕЙТИ К ЗАКАЗУ'}</button>
+                            </div>
+                            <ul className="calculator-stages">
+                            <li className="row justify-content-between align-items-center">
+                                <div className="col-3 justify-self-center">
+                                    <div className="calculator-stages__block">
+                                        <span className="calculator-stages__number">1</span>
                                     </div>                            
-                                    <p className="col-9 calculator-stages__text">Связываетесь удобным для Вас способом</p>
-                                </li>
-                                <li className="row justify-content-between align-items-center">
-                                    <div className="col-3 align-self-center">
-                                        <div className="calculator-stages__block calculator-stages__block--2">
-                                            <span className="calculator-stages__number">2</span>
-                                        </div>                            
+                                </div>                            
+                                <p className="col-9 calculator-stages__text">Связываетесь удобным для Вас способом</p>
+                            </li>
+                            <li className="row justify-content-between align-items-center">
+                                <div className="col-3 align-self-center">
+                                    <div className="calculator-stages__block calculator-stages__block--2">
+                                        <span className="calculator-stages__number">2</span>
                                     </div>                            
-                                    <p className="col-9 calculator-stages__text">Ориентировочную стоимость вы можете посчитать с помощью калькулятора на сайте</p>
-                                </li>
-                                <li className="row justify-content-between align-items-center">
-                                    <div className="col-3 align-self-center">
-                                        <div className="calculator-stages__block calculator-stages__block--3">
-                                            <span className="calculator-stages__number">3</span>
-                                        </div>                            
+                                </div>                            
+                                <p className="col-9 calculator-stages__text">Ориентировочную стоимость вы можете посчитать с помощью калькулятора на сайте</p>
+                            </li>
+                            <li className="row justify-content-between align-items-center">
+                                <div className="col-3 align-self-center">
+                                    <div className="calculator-stages__block calculator-stages__block--3">
+                                        <span className="calculator-stages__number">3</span>
                                     </div>                            
-                                    <p className="col-9 calculator-stages__text">В назначенные дату и время на объект приезжает бригада специалистов</p>
-                                </li>
-                                <li className="row justify-content-between align-items-center">
-                                    <div className="col-3 align-self-center">
-                                        <div className="calculator-stages__block calculator-stages__block--0">
-                                            <span className="calculator-stages__number">4</span>
-                                        </div>                            
+                                </div>                            
+                                <p className="col-9 calculator-stages__text">В назначенные дату и время на объект приезжает бригада специалистов</p>
+                            </li>
+                            <li className="row justify-content-between align-items-center">
+                                <div className="col-3 align-self-center">
+                                    <div className="calculator-stages__block calculator-stages__block--0">
+                                        <span className="calculator-stages__number">4</span>
                                     </div>                            
-                                    <p className="col-9 calculator-stages__text">Приёмка работ и оплата</p>
-                                </li>
-                            </ul>
-                            </div> 
-                    </form>
+                                </div>                            
+                                <p className="col-9 calculator-stages__text">Приёмка работ и оплата</p>
+                            </li>
+                        </ul>
+                        </div> 
+                    </div>
                 </div> 
             </section>
         )
