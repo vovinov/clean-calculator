@@ -20,7 +20,7 @@ export const data =  {
 export const cards = [
     {
         id: 1,
-        url: '/img/calculator_glasses.png',
+        url: './img/calculator_glasses.png',
         alt: 'Glasses',
         title: 'Помыть посуду',
         price: '250 руб / 60 мин',
@@ -32,7 +32,7 @@ export const cards = [
     },
     {
         id: 2,
-        url: '/img/calculator_multi.png',
+        url: './img/calculator_multi.png',
         alt: 'Multi',
         title: 'Помыть СВЧ печь',
         price: '250 руб',
@@ -44,7 +44,7 @@ export const cards = [
     },
     {
         id: 3,
-        url: '/img/calculator_friges.jpg',
+        url: './img/calculator_friges.jpg',
         alt: 'Heat',
         title: 'Помыть духовку',
         price: '450 руб',
@@ -56,7 +56,7 @@ export const cards = [
     },
     {
         id: 4,
-        url: '/img/calculator_friges2.jpg',
+        url: './img/calculator_friges2.jpg',
         alt: 'Glasses',
         title: 'Помыть холодильник',
         price: '450 руб',
@@ -68,7 +68,7 @@ export const cards = [
     },
     {
         id: 5,
-        url: '/img/calculator_kitchen-shelves.jpg',
+        url: './img/calculator_kitchen-shelves.jpg',
         alt: 'Kitchen',
         title: 'Помыть кухонныe шкафы',
         price: '500 руб',
@@ -80,7 +80,7 @@ export const cards = [
     },
     {
         id: 6,
-        url: '/img/calculator_windows.jpg',
+        url: './img/calculator_windows.jpg',
         alt: 'Windows',
         title: 'Мойка окон',
         price: 'от 190 руб / окно',
@@ -91,7 +91,7 @@ export const cards = [
         quantity: null
     },{
         id: 7,
-        url: '/img/calculator_lamp.jpg',
+        url: './img/calculator_lamp.jpg',
         alt: 'Lamp',
         title: 'Помыть люстру',
         price: '350 руб / шт',
@@ -103,7 +103,7 @@ export const cards = [
     },
     {
         id: 8,
-        url: '/img/calculator_balcon.jpg',
+        url: './img/calculator_balcon.png',
         alt: 'Glasses',
         title: 'Помыть балкон',
         price: '300 руб',
@@ -115,7 +115,7 @@ export const cards = [
     },
     {
         id: 9,
-        url: '/img/calculator_ironing.jpg',
+        url: './img/calculator_ironing.jpg',
         alt: 'Ironing',
         title: 'Глажка белья',
         price: '500 руб / 60 мин',
@@ -127,7 +127,7 @@ export const cards = [
     },
     {
         id: 10,
-        url: '/img/calculator_vacuum.jpg',
+        url: './img/calculator_vacuum.jpg',
         alt: 'Vacuum',
         title: 'Химчистка ковров',
         price: 'от 70 руб / м²',
@@ -139,7 +139,7 @@ export const cards = [
     },
     {
         id: 11,
-        url: '/img/calculator_tul.jpg',
+        url: './img/calculator_tul.jpg',
         alt: 'Tul',
         title: 'Химчистка штор',
         price: 'от 250 руб / м²',
