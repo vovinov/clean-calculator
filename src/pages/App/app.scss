@@ -160,9 +160,13 @@ h1, h2, h3, h4, p {
 
 .calculator-total__box {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
+}
+
+.calculator-total__buttons {
+    width: 100%;
 }
 
 .calculator-total__button {
@@ -173,6 +177,14 @@ h1, h2, h3, h4, p {
 
     &--right {
         margin-right: 10px;
+    }
+
+    &--delete {
+        background-color: transparent;
+        border: 1px solid $black;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 0 5px;
     }
 }
 
@@ -191,6 +203,7 @@ h1, h2, h3, h4, p {
 }
 
 .calculator-total__title {
+    flex-grow: 1;
     font-size: 16px;
     font-weight: 700;
 }
@@ -210,6 +223,7 @@ h1, h2, h3, h4, p {
 .calculator-total__price {
     font-size: 14px;
     font-weight: 500;
+    margin-right: 5px;
 }
 
 .calculator-total__subheading { margin-bottom: 25px; }

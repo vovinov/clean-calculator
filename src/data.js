@@ -153,7 +153,7 @@ export const cards = [
         id: 12,
         url: './img/calculator_textil.jpg',
         alt: 'Textil',
-        title: 'Химчистка тестильной мебели',
+        title: 'Химчистка текстильной мебели',
         price: 'от 250 руб / шт',
         buttons: true,
         value: 250,

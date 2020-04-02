@@ -401,9 +401,12 @@ export default class App extends Component {
         this.getTotalPrice();
     }
 
-    updateBonusPrice = (card, value) => {
+    updateBonusArray = (card, value, duration, square, quantity) => {
         const filter = R.find(R.propEq('title', card.title))(this.state.bonus)
-        filter.value = value
+        filter.value = value;
+        filter.duration = duration;
+        filter.square = square;
+        filter.quantity = quantity;
         this.getTotalPrice();
     }
 
@@ -422,8 +425,30 @@ export default class App extends Component {
             }
         })
     }
+
+    deleteRow = (item) => {
+        const {bonus} = this.state;
+
+        let cards = bonus.slice();
+
+        cards.splice(R.findIndex(R.propEq('title', item.title), cards), 1);
+        this.setState({
+            bonus: cards
+        })
+        this.getTotalPrice();
+    }
+
+    makeOrderObject = () => {
+        return JSON.stringify({
+            room: this.state.selectRoomValue,
+            type: this.state.selectTypeValue,
+            square: this.state.selectSquareValue,
+            bonus: this.state.bonus,
+            totalPrice: this.state.totalPrice
+        })
+    }
     
-    render() {       
+    render() {  
 
         const {subPrice, selectRoomValue, selectTypeValue, selectSquareValue, totalPrice, bonus, modal} = this.state;        
         const {services} = this.state.data;
@@ -433,7 +458,7 @@ export default class App extends Component {
                 <div className="container my-5">
                     <div className="row">
                         {
-                            modal === true ? <Modal  />
+                            modal === true ? <Modal  order={this.makeOrderObject()} />
                             :
                             <div className="col-md-6">
                                 <h2 className="calculator__heading">КАЛЬКУЛЯТОР</h2>
@@ -449,6 +474,7 @@ export default class App extends Component {
                                         return <Card 
                                                     card={card} 
                                                     key={card.id} 
+                                                    bonus={bonus}
                                                     onCardClick={() => this.addBonusPrice(card)} />
                                     })}
                                 </ul>  
@@ -471,7 +497,11 @@ export default class App extends Component {
                                 <ul className="calculator-total__list calculator-total__list--bordered">
                                     {bonus && bonus.map((item, idx) => {                            
                                         return (
-                                            <PriceRow key={idx} item={item} updateBonusPrice={this.updateBonusPrice} />
+                                            <PriceRow 
+                                                key={idx} 
+                                                item={item} 
+                                                updateBonusArray={this.updateBonusArray} 
+                                                deleteRow={this.deleteRow} />
                                         )
                                     })}
                                 </ul>

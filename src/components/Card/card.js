@@ -1,48 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
 import classNames from 'classnames';
+import * as R from 'ramda';
 
-export default class Card extends Component { 
+const  Card = ({card, bonus, onCardClick}) => { 
 
-    state = {
-        active: false
-    }
+    const {url, alt, title, price} = card;
 
-    changeState = () => {
-        this.setState((state) => {
-            return {
-                active: !state.active
-            }
-        })
-    }
-
-    cardClick = () => {
-        this.changeState()
-        this.props.onCardClick()
-    }
+    const linkClass = classNames({
+        'calculator-card': true,
+        'calculator-card--active': R.contains(card, bonus)
+    })
    
-    render() {
- 
-        const {card} = this.props;
-        const {url, alt, title, price} = card;
-    
-        const linkClass = classNames({
-            'calculator-card': true,
-            'calculator-card--active': this.state.active
-        })
+    return (
 
-        return (
-            <li className="col-lg-4 col-sm-6 calculator-item text-center" onClick={this.cardClick}>
-                <div className={linkClass}>
-                    <div className="calculator-card__img">
-                        <img className="img-fluid" src={url} alt={alt} />
-                    </div>
-                    <div className="calculator-card__title text-center">
-                        <span className="calculator-card__name">{title}</span>
-                    </div>
-                    <p className="calculator-card__price">{price}</p>
+        <li className="col-lg-4 col-sm-6 calculator-item text-center" onClick={onCardClick}>
+            <div className={linkClass}>
+                <div className="calculator-card__img">
+                    <img className="img-fluid" src={url} alt={alt} />
                 </div>
-            </li>
-        )
-    }
-  
+                <div className="calculator-card__title text-center">
+                    <span className="calculator-card__name">{title}</span>
+                </div>
+                <p className="calculator-card__price">{price}</p>
+            </div>
+        </li>
+        
+    )
 }
+
+export default Card

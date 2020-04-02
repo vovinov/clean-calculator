@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
 export default class PriceRow extends Component {
 
@@ -11,9 +11,9 @@ export default class PriceRow extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const {value} = this.state;
+        const {value, duration, square, quantity} = this.state;
         if (value !== prevState.value) {
-            this.props.updateBonusPrice(this.props.item, value);
+            this.props.updateBonusArray(this.props.item, value, duration, square, quantity);
         }
     }
 
@@ -52,7 +52,7 @@ export default class PriceRow extends Component {
     
     decValueToBonusLamp = () => {
         this.setState((state) => {
-            if (state.value === 0) {
+            if (state.value === 1) {
                 return {
                     value: state.value,
                     quantity: state.quantity
@@ -302,7 +302,11 @@ export default class PriceRow extends Component {
             <li className="calculator-total__row" key={idx}>
                 <div className="calculator-total__box mb-3">
                     <span className="calculator-total__title">{item.title}</span> 
-                    <span className="calculator-total__price">{price}</span>
+                    <span className="calculator-total__price">{price} </span>
+                    <button className="calculator-total__button calculator-total__button--delete"
+                            onClick={() => this.props.deleteRow(this.props.item)}>
+                        &#10006;
+                    </button>
                 </div>
                 {item.buttons && this.changeButtons(item.title)}                                                               
             </li>
