@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './modal.scss'
+import './order.scss'
 
-const Modal = ({order}) => {
+const Order = ({order}) => {
 
     return (
         <div className="col-md-6 modal__form">
@@ -27,4 +27,4 @@ const Modal = ({order}) => {
     )
 }
 
-export default Modal
+export default Order

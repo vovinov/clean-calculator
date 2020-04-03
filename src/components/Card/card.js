@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import * as R from 'ramda';
 
-const  Card = ({card, bonus, onCardClick}) => { 
+const  Card = ({card, bonus, onCardClick, openModal}) => { 
 
     const {url, alt, title, price} = card;
 
@@ -10,10 +10,15 @@ const  Card = ({card, bonus, onCardClick}) => {
         'calculator-card': true,
         'calculator-card--active': R.contains(card, bonus)
     })
+
+    const onCardClicked = () => {
+        onCardClick();
+        openModal();
+    }
    
     return (
 
-        <li className="col-lg-4 col-sm-6 calculator-item text-center" onClick={onCardClick}>
+        <li className="col-lg-4 col-sm-6 calculator-item text-center" onClick={() => onCardClicked()}>
             <div className={linkClass}>
                 <div className="calculator-card__img">
                     <img className="img-fluid" src={url} alt={alt} />

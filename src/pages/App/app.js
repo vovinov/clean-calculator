@@ -5,7 +5,8 @@ import * as R from 'ramda';
 import CalculatorRow from '../../components/CalculatorRow';
 import Card from '../../components/Card';
 import PriceRow from '../../components/PriceRow';
-import Modal from '../../components/Modal'
+import Order from '../../components/Order';
+import Window from '../../components/Window';
 
 import './app.scss';
 
@@ -23,7 +24,9 @@ export default class App extends Component {
         subPrice: null,
         totalPrice: null,        
         bonus: [],
-        modal: false
+        order: false,
+        window: false
+
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -386,7 +389,7 @@ export default class App extends Component {
         }
     }
 
-    addBonusPrice = (card, value) => {
+    addBonusPrice = (card) => {
         const {bonus} = this.state
         
         let cards = bonus.slice();          
@@ -421,7 +424,7 @@ export default class App extends Component {
     changeMode = () => {
         this.setState((state) => {
             return {
-                modal: !state.modal
+                order: !state.order
             }
         })
     }
@@ -447,18 +450,28 @@ export default class App extends Component {
             totalPrice: this.state.totalPrice
         })
     }
+
+    openModal = (card) => {
+        if (card.title === 'Химчистка текстильной мебели') {
+            this.setState({
+                window: true
+            })
+        }
+    }
     
     render() {  
 
-        const {subPrice, selectRoomValue, selectTypeValue, selectSquareValue, totalPrice, bonus, modal} = this.state;        
+        const {subPrice, selectRoomValue, selectTypeValue, selectSquareValue, totalPrice, bonus, window, order} = this.state;        
         const {services} = this.state.data;
 
         return (
             <section>
+                {window === true ? <Window /> 
+                :
                 <div className="container my-5">
                     <div className="row">
                         {
-                            modal === true ? <Modal  order={this.makeOrderObject()} />
+                            order === true ? <Order  order={this.makeOrderObject()} />
                             :
                             <div className="col-md-6">
                                 <h2 className="calculator__heading">КАЛЬКУЛЯТОР</h2>
@@ -475,7 +488,8 @@ export default class App extends Component {
                                                     card={card} 
                                                     key={card.id} 
                                                     bonus={bonus}
-                                                    onCardClick={() => this.addBonusPrice(card)} />
+                                                    onCardClick={() => this.addBonusPrice(card)} 
+                                                    openModal={() => this.openModal(card)} />
                                     })}
                                 </ul>  
                             </div>
@@ -509,7 +523,7 @@ export default class App extends Component {
                                     <h3 className="mb-3">ВСЕГО</h3>
                                     <span className="calculator-total__price"> {totalPrice && `${totalPrice} руб`}</span>
                                 </div>
-                                <button type="button" className="section__btn calculator-total__btn" onClick={this.changeMode}>{this.state.modal ? 'НАЗАД' : 'ПЕРЕЙТИ К ЗАКАЗУ'}</button>
+                                <button type="button" className="section__btn calculator-total__btn" onClick={this.changeMode}>{this.state.order ? 'НАЗАД' : 'ПЕРЕЙТИ К ЗАКАЗУ'}</button>
                             </div>
                             <ul className="calculator-stages">
                             <li className="row justify-content-between align-items-center">
@@ -548,6 +562,7 @@ export default class App extends Component {
                         </div> 
                     </div>
                 </div> 
+                }
             </section>
         )
     }
