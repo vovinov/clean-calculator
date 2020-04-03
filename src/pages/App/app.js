@@ -3,21 +3,26 @@ import React, {Component} from 'react';
 import * as R from 'ramda';
 
 import CalculatorRow from '../../components/CalculatorRow';
-import Card from '../../components/Card';
 import PriceRow from '../../components/PriceRow';
 import Order from '../../components/Order';
-import Window from '../../components/Window';
+import ListCard from '../../components/ListCard';
 
 import './app.scss';
 
 import {data} from '../../data';
 import {cards} from '../../data';
+import {textilCards} from '../../data';
+import {leatherCards} from '../../data';
+import {matrassCards} from '../../data';
 
 export default class App extends Component {
 
     state = {
         data: data,
         cards: cards,
+        textilCards: textilCards,
+        leatherCards: leatherCards,
+        matrassCards: matrassCards,
         selectRoomValue: '',
         selectTypeValue: '',
         selectSquareValue: '',
@@ -25,7 +30,9 @@ export default class App extends Component {
         totalPrice: null,        
         bonus: [],
         order: false,
-        window: false
+        textil: false,
+        leather: false,
+        matrass: false
 
     }
 
@@ -390,7 +397,12 @@ export default class App extends Component {
     }
 
     addBonusPrice = (card) => {
+        console.log(card)
         const {bonus} = this.state
+
+        if (card.title === 'Химчистка текстильной мебели') { return };
+        if (card.title === 'Химчистка кожаной мебели') { return };
+        if (card.title === 'Химчистка матрасов') { return };
         
         let cards = bonus.slice();          
         if (!R.contains(card, cards)) {
@@ -451,24 +463,113 @@ export default class App extends Component {
         })
     }
 
-    openModal = (card) => {
+    changeToView = (card) => {
         if (card.title === 'Химчистка текстильной мебели') {
             this.setState({
-                window: true
+                textil: true
             })
         }
+
+        if (card.title === 'Химчистка кожаной мебели') {
+            this.setState({
+                leather: true
+            })
+        }
+
+        if (card.title === 'Химчистка матрасов') {
+            this.setState({
+                matrass: true
+            })
+        }
+    }
+
+    makeCardList = () => {
+        const {cards, textil, leather, matrass, textilCards, leatherCards, matrassCards} = this.state;
+
+        let сardList;
+
+        if (textil) {
+            сardList = textilCards
+        } else if (leather) {
+            сardList = leatherCards
+        } else if (matrass) {
+            сardList = matrassCards
+        }else {
+            сardList = cards
+        }
+
+        return сardList
+    } 
+
+    changeCards = () => {
+
+        return (
+            <ListCard 
+                cards={this.makeCardList()} 
+                bonus={this.state.bonus}
+                addBonusPrice={this.addBonusPrice}
+                changeToView={this.changeToView}  /> 
+        )
     }
     
     render() {  
 
-        const {subPrice, selectRoomValue, selectTypeValue, selectSquareValue, totalPrice, bonus, window, order} = this.state;        
+        const {
+            subPrice, 
+            selectRoomValue, 
+            selectTypeValue, 
+            selectSquareValue, 
+            totalPrice, 
+            bonus, 
+            order, 
+            textil,
+            leather,
+            matrass
+        } = this.state;        
         const {services} = this.state.data;
 
         return (
-            <section>
-                {window === true ? <Window /> 
-                :
+            <section>  
                 <div className="container my-5">
+                    <nav className="navigation navigation--calculator row">
+                        <a href="/" className="navigation__img col-md-3 col-md-3">
+                            <img src="../img/logo.png" alt="Logo" className="navigation__logo" />
+                        </a>
+                        <div className="navigation__box col-md-9">
+                            <div className="navigation__box-contacts">
+                                <ul className="contacts">
+                                    <li className="contacts__item mr-3">
+                                        <a href="!#" className="contacts__link">
+                                            <i className="fab fa-whatsapp contacts__icon"></i>
+                                        </a>
+                                    </li>
+                                    <li className="contacts__item mr-3">
+                                        <a href="!#" className="contacts__link">
+                                            <i className="fab fa-telegram contacts__icon"></i>
+                                        </a>
+                                    </li>
+                                    <li className="contacts__item mr-3">
+                                        <a href="!#" className="contacts__link">
+                                            <i className="fab fa-viber contacts__icon"></i>
+                                        </a>
+                                    </li>
+                                    <li className="contacts__item">
+                                        <a href="!#" className="contacts__link">
+                                            <i className="fab fa-instagram contacts__icon"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <p className="navigation__phone navigation__phone--primary">8-800-123-45-67</p>
+                            </div>
+                            <ul className="navigation__list">
+                                <a href="../index.html#services" className="section__btn section__btn--main navigation__link">УСЛУГИ</a>
+                                <a href="../price-clean.html" className="section__btn section__btn--main navigation__link">ПРАЙС</a>
+                                <a href="../index.html#works" className="section__btn section__btn--main navigation__link">РАБОТЫ</a>
+                                <a href="../index.html#comments" className="section__btn section__btn--main navigation__link">ОТЗЫВЫ</a>
+                                <a href="../index.html#contacts" className="section__btn section__btn--main navigation__link">КОНТАКТЫ</a>
+                            </ul>
+                        </div>
+                    </nav>
                     <div className="row">
                         {
                             order === true ? <Order  order={this.makeOrderObject()} />
@@ -480,18 +581,11 @@ export default class App extends Component {
                                     options={services} 
                                     onSelected={this.onSelectRoom} />                            
                                 {this.renderSwitch(selectRoomValue)}                            
-                                <h2 className="calculator__heading">ДОПОЛНИТЕЛЬНО</h2> 
-                                <ul className="calculator__list row">
-                                    {cards &&
-                                    cards.map((card) => {
-                                        return <Card 
-                                                    card={card} 
-                                                    key={card.id} 
-                                                    bonus={bonus}
-                                                    onCardClick={() => this.addBonusPrice(card)} 
-                                                    openModal={() => this.openModal(card)} />
-                                    })}
-                                </ul>  
+                                <div className="calculator__heading-box">
+                                    <h2 className="calculator__heading">ДОПОЛНИТЕЛЬНО</h2>
+                                    {textil === true || leather === true || matrass === true ? <button className="btn section__btn" onClick={() => this.setState({textil: false, leather: false, matrass: false})}>&larr; Назад</button> : null}
+                                </div>                                 
+                                {this.changeCards()}
                             </div>
                         }                       
                         <div className="col-md-6 d-flex justify-content-center flex-wrap align-content-start">
@@ -560,9 +654,8 @@ export default class App extends Component {
                             </li>
                         </ul>
                         </div> 
-                    </div>
+                    </div>                
                 </div> 
-                }
             </section>
         )
     }

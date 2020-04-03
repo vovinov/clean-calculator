@@ -53,10 +53,17 @@ h1, h2, h3, h4, p {
     height: 100%;
 }
 
+.calculator__heading-box {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
 .calculator__heading {
     font-size: 36px;
     font-weight: 700;
-    margin-bottom: 22px;
 }
 
 .calculator__row { margin-bottom: 30px; }
@@ -162,7 +169,9 @@ h1, h2, h3, h4, p {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    margin-bottom: 10px;
     align-items: center;
+    
 }
 
 .calculator-total__buttons {

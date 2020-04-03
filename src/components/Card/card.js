@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import * as R from 'ramda';
 
-const  Card = ({card, bonus, onCardClick, openModal}) => { 
+const  Card = ({card, bonus, onCardClick, changeToView}) => { 
 
     const {url, alt, title, price} = card;
 
@@ -13,7 +13,7 @@ const  Card = ({card, bonus, onCardClick, openModal}) => {
 
     const onCardClicked = () => {
         onCardClick();
-        openModal();
+        changeToView();
     }
    
     return (

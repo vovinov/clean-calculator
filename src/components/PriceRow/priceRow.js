@@ -299,8 +299,9 @@ export default class PriceRow extends Component {
         }           
 
         return (
-            <li className="calculator-total__row" key={idx}>
-                <div className="calculator-total__box mb-3">
+            <li className="calculator-total__row" key={idx}>                
+                <p className="calculator-total__title">{item.category}</p> 
+                <div className="calculator-total__box">
                     <span className="calculator-total__title">{item.title}</span> 
                     <span className="calculator-total__price">{price} </span>
                     <button className="calculator-total__button calculator-total__button--delete"
@@ -308,7 +309,7 @@ export default class PriceRow extends Component {
                         &#10006;
                     </button>
                 </div>
-                {item.buttons && this.changeButtons(item.title)}                                                               
+                {item.buttons && this.changeButtons(item.title)}                                                                     
             </li>
         )
     }
