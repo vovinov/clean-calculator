@@ -52,6 +52,7 @@ export default class PriceRow extends Component {
     
     decValueToBonusLamp = () => {
         this.setState((state) => {
+            console.log(state.value)
             if (state.value === 1) {
                 return {
                     value: state.value,

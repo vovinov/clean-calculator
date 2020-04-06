@@ -539,27 +539,27 @@ export default class App extends Component {
                             <div className="navigation__box-contacts">
                                 <ul className="contacts">
                                     <li className="contacts__item mr-3">
-                                        <a href="!#" className="contacts__link">
-                                            <i className="fab fa-whatsapp contacts__icon"></i>
+                                        <a href="https://wa.me/79858638014" className="contacts__link">
+                                            <i className="fab fa-whatsapp contacts__icon contacts__icon--whatsapp"></i>
                                         </a>
                                     </li>
                                     <li className="contacts__item mr-3">
                                         <a href="!#" className="contacts__link">
-                                            <i className="fab fa-telegram contacts__icon"></i>
+                                            <i className="fab fa-telegram contacts__icon contacts__icon--telegram"></i>
                                         </a>
                                     </li>
                                     <li className="contacts__item mr-3">
-                                        <a href="!#" className="contacts__link">
-                                            <i className="fab fa-viber contacts__icon"></i>
+                                        <a href="viber://forward?text=79858638014" className="contacts__link">
+                                            <i className="fab fa-viber contacts__icon contacts__icon--viber"></i>
                                         </a>
                                     </li>
                                     <li className="contacts__item">
-                                        <a href="!#" className="contacts__link">
-                                            <i className="fab fa-instagram contacts__icon"></i>
+                                        <a href="https://instagram.com/hardclean_moscow?igshid=14ngow71x09su" className="contacts__link">
+                                            <i className="fab fa-instagram contacts__icon contacts__icon--instagram"></i>
                                         </a>
                                     </li>
                                 </ul>
-                                <p className="navigation__phone navigation__phone--primary">8-800-123-45-67</p>
+                                <p className="navigation__phone navigation__phone--primary">+7(495)147-47-14</p>
                             </div>
                             <ul className="navigation__list">
                                 <a href="../index.html#services" className="section__btn section__btn--main navigation__link">УСЛУГИ</a>

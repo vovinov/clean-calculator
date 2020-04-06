@@ -187,7 +187,7 @@ export const cards = [
     },
     {
         id: 14,
-        url: './img/calculator_leather.jpg',
+        url: '../img/picture_matrass_sm.jpg',
         alt: 'Matrass',
         title: 'Химчистка матрасов',
         price: 'от 1350 руб / шт',

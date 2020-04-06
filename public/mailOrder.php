@@ -7,6 +7,7 @@ $mail->CharSet = 'utf-8';
 $name = $_POST['name'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
+$text = $_POST['text'];
 $order = json_decode($_POST['order']);
 
 // $mail->SMTPDebug = 3;                               // Enable verbose debug output
@@ -39,23 +40,26 @@ $mail->addAddress('order@hardclean.ru');     // Кому будет уходит
 $mail->isHTML(true);                                  // Set email format to HTML
 
 function rollArray($array) {
-	foreach ($array as $element):
-		return $element->title . '   ' . $element->price . '<br>';
-    endforeach;
+    $str = '';
+    foreach ($array as $element) {
+        $newStr = '' . '<b>' . $element->title . '</b>' . '  ' . $element->price . '<br />';
+        $str = $str . $newStr; 
+    }
+    return $str;
 };
-
 
 $mail->Subject = 'Заявка c сайта HARD CLEAN';
 $mail->Body    = '' . '<b>' . $name . '</b>' . ' оставил заявку,
-<br>его телефон ' . '<b>' . $phone . '</b>' . 
-'<br>Почта этого пользователя: ' . '<b>' . $email . '</b>' . '<br>' .
-'<br><b>Состав заказа:</b>' . 
-'<br>Услуга: <b>' . $order->room . '</b>' .
-'<br>Тип: <b>' . $order->type . '</b>' .
-'<br>Метраж: <b>' . $order->square . '</b>' .
+<br>Телефон ' . '<b>' . $phone . '</b>' . 
+'<br />Почта: ' . '<b>' . $email . '</b>' . '<br />' .
+'<br />Время звонка: ' . '<b>' . $text . '</b>' . '<br />' .
+'<br /><b>Состав заказа:</b>' . 
+'<br />Услуга: <b>' . $order->room . '</b>' .
+'<br />Тип: <b>' . $order->type . '</b>' .
+'<br />Метраж: <b>' . $order->square . '</b>' . '<br>' .
 '<br>Дополнительно:<br>' .
-rollArray($order->bonus) . '<br>' 
-. 'Итого: ' . '<b>' . $order->total . '</b>';
+rollArray($order->bonus)
+. '<br>' . 'Итого: ' . '<b>' . $order->totalPrice . '</b>';
 
 
 $mail->AltBody = '';
