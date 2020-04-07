@@ -397,7 +397,6 @@ export default class App extends Component {
     }
 
     addBonusPrice = (card) => {
-        console.log(card)
         const {bonus} = this.state
 
         if (card.title === 'Химчистка текстильной мебели') { return };
@@ -544,7 +543,7 @@ export default class App extends Component {
                                         </a>
                                     </li>
                                     <li className="contacts__item mr-3">
-                                        <a href="!#" className="contacts__link">
+                                        <a href="tg://resolve?domain=Ildar_invest" className="contacts__link">
                                             <i className="fab fa-telegram contacts__icon contacts__icon--telegram"></i>
                                         </a>
                                     </li>

@@ -186,6 +186,30 @@ export default class PriceRow extends Component {
         })
     }
 
+    incValueToBonusWindow = () => {
+        this.setState((state) => {
+            return {
+                value: state.value + 190,
+                quantity: state.quantity + 1
+            }
+        })
+    } 
+
+    decValueToBonusWindow = () => {
+        this.setState((state) => {
+            if (state.value === 190) {
+                return {
+                    value: state.value,
+                    quantity: state.quantity
+                }
+            } 
+            return {
+                value: state.value - 190,
+                quantity: state.quantity - 1
+            }
+        })
+    }
+
     changeButtons = (title) => {
         switch(title) {
             case 'Помыть посуду':
@@ -198,6 +222,19 @@ export default class PriceRow extends Component {
                         <button 
                             className="btn calculator-total__button"
                             onClick={() => this.decValueToBonusDishes()}
+                        >-</button>
+                    </div> 
+                )
+            case 'Мойка окон':
+                return (
+                    <div className="calculator-total__buttons mb-3 text-right">
+                        <button 
+                            className="btn calculator-total__button calculator-total__button--right"
+                            onClick={() => this.incValueToBonusWindow()}>+
+                        </button>
+                        <button 
+                            className="btn calculator-total__button"
+                            onClick={() => this.decValueToBonusWindow()}
                         >-</button>
                     </div> 
                 )

@@ -90,11 +90,11 @@ export const cards = [
         category: 'Услуга',
         title: 'Мойка окон',
         price: 'от 190 руб / окно',
-        buttons: false,
+        buttons: true,
         value: 190,
         duration: null,
         square: null,
-        quantity: null
+        quantity: 1
     },{
         id: 7,
         url: './img/calculator_lamp.jpg',
@@ -329,7 +329,7 @@ export const textilCards = [
     },
     {
         id: 15,
-        url: '../img/price__chair-5.png',
+        url: '../img/price__chair-5.jpg',
         alt: 'Chair-5',
         category: 'Химчистка текстильной мебели',
         title: 'Кресло "директора"',
@@ -467,7 +467,7 @@ export const leatherCards = [
     },
     {
         id: 15,
-        url: '../img/price__chair-5.png',
+        url: '../img/price__chair-5.jpg',
         alt: 'Chair-5',
         category: 'Химчистка кожаной мебели',
         title: 'Кресло "директора"',
